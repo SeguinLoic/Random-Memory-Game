@@ -10,7 +10,21 @@ export default function FormSeach({ setPhotos, setPartie }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        fetch(`./.netlify/functions/images?query=${title}`)
+        .then(response => response.json())
+        .then(data => {
+            if( data.results.length < 15 || number === undefined ) {
+                alert("Le thème n'a pas été trouvé, le nombre n'a pas été défini, veuillez saisir une nouvelle requête !");
+                setTitle("");
+                return;
+            }
+            dataGame(data);
+        })
+
+        /*
+
         const API_KEY = process.env.REACT_APP_API_KEY;
+
         fetch(`https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${title}&per_page=15`)
         .then(response => response.json())
         .then(data => {
@@ -21,7 +35,10 @@ export default function FormSeach({ setPhotos, setPartie }) {
                 return;
             }
             dataGame(data);
-        })
+        }) 
+
+        */
+
     }
 
     const dataGame = (data) => {
