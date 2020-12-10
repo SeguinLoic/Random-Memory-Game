@@ -42,7 +42,7 @@ export default function BoardGame({photos, setPartie, setPhotos}) {
             }, 700);
         }
         return;
-    }, [photoSelect])
+    }, [photoSelect, nbEssais, paires, nbPaires])
 
     const handlePartie = () => {
         setPhotos([]);
