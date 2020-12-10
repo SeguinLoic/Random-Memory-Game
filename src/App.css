@@ -120,6 +120,7 @@ label.form-label {
   border-radius: 12px;
   left: -1px;
   top: -1px;
+  z-index:1;
 }
 .blocImg img {
   position: absolute;
@@ -163,6 +164,7 @@ label.form-label {
 }
 .blocImg.active::before, .blocImg.valide::before  {
   transform: rotateY(-180deg);
+  z-index:0; 
 }
 .blocImg.active img, .blocImg.valide img, .blocImg.active .photographer, .blocImg.valide .photographer  {
   transform: rotateY(0deg);
