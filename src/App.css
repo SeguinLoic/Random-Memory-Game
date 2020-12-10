@@ -1,38 +1,237 @@
+/* --------------- DOCUMENT --------------- */
+div#root {
+  min-height: 100vH;
+}
+body {
+  background: rgb(54,209,220);
+  background: linear-gradient(148deg, rgba(54,209,220,1) 0%, rgba(91,134,229,1) 100%);
+}
+
+/* --------------- APPLICATION --------------- */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
   align-items: center;
+  padding: 50px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: relative;
+  min-height: 100vH;
+}
+.App:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  background-image: url(images/wallpaper.svg);
+  background-size: 20%;
+  opacity: 0.6;
+}
+.App:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 163 240 / 10%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.container-app {
+  padding: 35px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 5px 30px -5px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 50px;
+}
+body h1 {
+  margin: 0px;
+  padding-bottom: 20px;
+  font-weight: 700;
+  line-height: 1em;
+  text-align: center;
+}
+.center {
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+}
+.compteur {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+/* --------------- FORM --------------- */
+form.formulaire input {
+  box-sizing: border-box;
+}
+label.form-label {
+  color: #1083db;
+  font-weight: 600;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* --------------- BOARDGAME --------------- */
+.boardgame {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.blocImg {
+  width: calc(18vW - 20px);
+  display: flex;
+  position: relative;
+  height: auto;
+  margin: 10px;
+  border-radius: 5px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+.blocImg:after {
+  content: "";
+  float: left;
+  padding-top: 100%;
+}
+.blocImg:before {
+  content: '?';
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background-color: #eaeaea;
+  position: absolute;
+  transition: all 0.6s;
+  transform: rotateY(0deg);
+  pointer-events: none;
+  border: 7px solid #d5d5d5;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10em;
+  font-weight: 700;
+  color: #d5d5d5;
+  border-radius: 12px;
+  left: -1px;
+  top: -1px;
+}
+.blocImg img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: all 0.6s;
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+.photographer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #ffffff;
+  font-size: 0.8em;
+  line-height: 1.3em;
+  transition: all 0.6s;
+  transform: rotateY(180deg);
+  width: 100%;
+  padding: 10px;
+  pointer-events: none;
+  padding-top: 50px;
+}
+.photographer:before {
+  z-index: -1;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+  border-radius: 0px 0px 12px 12px;
+}
+.photographer a {
+  color: #ffffff;
+  text-decoration: underline;
+  margin: 0px 4px;
+}
+.blocImg.active::before, .blocImg.valide::before  {
+  transform: rotateY(-180deg);
+}
+.blocImg.active img, .blocImg.valide img, .blocImg.active .photographer, .blocImg.valide .photographer  {
+  transform: rotateY(0deg);
+}
+.blocImg.active .photographer, .blocImg.valide .photographer  {
+  pointer-events: auto;
+}
+
+/* --------------- SIGNATURE --------------- */
+.signature {
+  line-height: 1em;
+  text-align: center;
+  font-size: 0.7em;
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #989898;
+}
+.signature svg {
+  width: 11px;
+  color: #bf3535;
+}
+.signature a {
+  font-weight: 700;
+  color: #000;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .App {
+    width: auto;
+    padding: 25px;
+}
+  .container-app {
+    width: 100%;
+    padding: 25px;
+    padding-bottom: 35px;
+}
+  .blocImg {
+    width: calc(33% - 20px);
   }
 }
+
+@media screen and (max-width: 800px) {
+  .blocImg:before {
+    font-size: 7em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .blocImg {
+    width: calc(50% - 20px);
+  }
+  .blocImg:before {
+    font-size: 4em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .App {
+    padding: 5px;
+  }
+  .container-app {
+    padding: 15px;
+    padding-bottom: 25px;
+}
+  .blocImg:after {
+    padding-top: 150%;
+  }
+}
+

@@ -6,6 +6,7 @@
 .pnp.js
 
 /files_design
+.env
 
 # testing
 /coverage
