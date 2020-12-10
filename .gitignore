@@ -8,6 +8,7 @@
 /files_design
 .env
 /functions
+netlify.toml
 
 # testing
 /coverage
